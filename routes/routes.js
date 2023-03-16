@@ -17,13 +17,13 @@ userRouter.get("/",async(req,res)=>{
     }
 })
 userRouter.post("/register",async(req,res)=>{
-    const {name,email,gender ,password, age ,city}=req.body
+    const {firstName,email,lastName ,password,}=req.body
     try{
         bcrypt.hash(password, 5, async(err, hash)=> {
             // Store hash in your password DB.
             if(err)res.send({"msg":"User already exist, please login","err":err.message}) 
             else{
-                const users=new UserModel({name,email,gender ,password:hash, age ,city})
+                const users=new UserModel({firstName,email ,password:hash, lastName})
                 await users.save()
         res.send({"msg":"User registration successfully"}) 
             }

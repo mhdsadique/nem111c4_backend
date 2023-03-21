@@ -13,7 +13,7 @@ app.use(cors())
 
 app.use("/users",userRouter)
 app.use(authentication)
-app.use("/product",noteRouter)
+app.use("/posts",noteRouter)
 app.use(authentication)
 app.use("/cart",cartRouter)
 app.listen(process.env.port || 3001,async()=>{

@@ -5,15 +5,12 @@ var jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
 const {UserModel}=require("../model/model");
-const { q, _gte, _lte, _limit, _page, _sort, _order } =req.query;
-// let myquery = {};
+
 userRouter.get("/",async(req,res)=>{
     const query=req.query
     try{
         const users=await UserModel.find(query)
-        .sort({ [_sort]: _order })
-        .limit(_limit )
-        .skip((_page - 1) * _limit);
+     
         res.send(users)
     }catch(e){
         res.send({"msg":"User already exist, please login","err":e.message}) 

@@ -3,7 +3,8 @@ const express=require("express")
 const noteRouter=express.Router()
 
 const {NoteModel}=require("../model/notemodel");
-
+const { q, _gte, _lte, _limit, _page, _sort, _order } =req.query;
+// let myquery = {};
 noteRouter.get("/",async(req,res)=>{
     const query=req.query
     // const data=["page","sort","limit","fields"]
@@ -12,7 +13,9 @@ noteRouter.get("/",async(req,res)=>{
     // querystr=querystr.replace(/\b(gte|gt|lte|lt)\b/g,match=>`$${match}`)
     try{
         const users=await NoteModel.find(query)
-
+        .sort({ [_sort]: _order })
+        .limit(_limit )
+        .skip((_page - 1) * _limit);
         res.send(users)
     }catch(e){
         res.send({"msg":"User already exist, please login","err":e.message}) 

@@ -13,6 +13,9 @@ noteRouter.get("/",async(req,res)=>{
         res.send({"msg":"User already exist, please login","err":e.message}) 
     }
 })
+
+
+
 noteRouter.post("/create",async(req,res)=>{
     const payload=req.body
     try{
@@ -36,7 +39,6 @@ noteRouter.delete("/delete/:id",async(req,res)=>{
     }
 })
 
-
 noteRouter.patch("/update/:id",async(req,res)=>{
     const noteId=req.params.id
     const payload=req.body
@@ -48,6 +50,6 @@ noteRouter.patch("/update/:id",async(req,res)=>{
         res.send({"msg":"User cnnot updated","err":e.message}) 
     }
 })
-
+// ------------------cart--------------
 
 module.exports={noteRouter}

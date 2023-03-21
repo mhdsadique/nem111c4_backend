@@ -3,9 +3,9 @@ const express=require("express")
 const noteRouter=express.Router()
 
 const {NoteModel}=require("../model/notemodel");
-const { q, _gte, _lte, _limit, _page, _sort, _order } =req.query;
 // let myquery = {};
 noteRouter.get("/",async(req,res)=>{
+    const { q, _gte, _lte, _limit, _page, _sort, _order } =req.query;
     const query=req.query
     // const data=["page","sort","limit","fields"]
     // data.forEach(e=>delete query[e])

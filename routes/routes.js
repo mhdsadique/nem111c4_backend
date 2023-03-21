@@ -10,9 +10,7 @@ userRouter.get("/",async(req,res)=>{
     const query=req.query
     try{
         const users=await UserModel.find(query)
-        .limit(limit * 1)
-      .skip((page - 1) * limit)
-      .exec();
+     
         res.send(users)
     }catch(e){
         res.send({"msg":"User already exist, please login","err":e.message}) 

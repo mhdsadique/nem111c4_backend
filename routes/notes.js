@@ -6,8 +6,15 @@ const {NoteModel}=require("../model/notemodel");
 
 noteRouter.get("/",async(req,res)=>{
     const query=req.query
+    const data=["page","sort","limit","fields"]
+    data.forEach(e=>delete query[e])
+    let querystr=JSON.stringify(query)
+    querystr=querystr.replace(/\b(gte|gt|lte|lt)\b/g,match=>`$${match}`)
     try{
-        const users=await NoteModel.find(query)
+        const users=await NoteModel.find(querystr)
+        // .limit(limit * 1)
+        // .skip((page - 1) * limit)
+        // .exec();
         res.send(users)
     }catch(e){
         res.send({"msg":"User already exist, please login","err":e.message}) 

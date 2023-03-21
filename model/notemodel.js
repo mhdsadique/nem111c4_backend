@@ -12,7 +12,7 @@ const noteSchema=mongoose.Schema({
     price:{type:Number},
     itemfind:{type:String},
     findname:{type:String},
-    menu:{type:[String]},
+    menu:{type:String},
     user:{type:String}
 },{
     versionKey:false
